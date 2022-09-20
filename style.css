@@ -6,6 +6,7 @@ body {
 	justify-content: center;
 	margin: 0;
 	padding: 0;
+	background-color: #f6f6f6;
 }
 
 .content {
@@ -22,12 +23,14 @@ body {
 	aspect-ratio: 9 / 16;
 	height: 90%;
 	padding: 16px;
+	background-color: #aaaaaa;
 }
 
 .screen {
 	display: flex;
 	flex-shrink: 1;
 	height: 20%;
+	background-color: #eeeeee;
 	/* padding: 8px 12px 16px 12px; will probably remove it later */
 }
 
@@ -45,6 +48,14 @@ button {
 	gap: 8px;
 	margin-top: 12px;
 	margin-bottom: 16px;
+}
+
+.delete-btn {
+	background-color: #aaaaff;
+}
+
+.clear-btn {
+	background-color: #ffaaaa;
 }
 
 .function-area .big-btn {
