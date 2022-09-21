@@ -1,13 +1,27 @@
 let n1 = 0,
 	n2 = NaN;
 let op = "";
+let validKeys = ["+", "-", "/", "*", "=", ".", "Backspace", "Delete", "Enter"];
+document.addEventListener("keyup", (e) => {
+	let key = e.key;
+	console.log(key);
+	if (validKeys.includes(key) || !isNaN(key)) {
+		key = key
+			.replace("Enter", "=")
+			.replace("Backspace", "DELETE")
+			.replace("Delete", "CLEAR")
+			.replace("*", "x")
+			.replace("/", "÷");
+		makeAction(key);
+	}
+});
 
 document.querySelectorAll("button").forEach((item) => (item.onclick = makeAction));
 const inputArea = document.querySelector(".input-area");
 const memoryArea = document.querySelector(".memory-area");
 
 function makeAction(e) {
-	let pressedButton = e.target.innerHTML;
+	let pressedButton = e.target?.innerHTML ?? e;
 	if (pressedButton === ".") appendDot();
 	else if (pressedButton === "DELETE") deleteLastDigit();
 	else if (pressedButton === "CLEAR") clear();
