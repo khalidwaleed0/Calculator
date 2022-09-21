@@ -16,6 +16,7 @@ function makeAction(e) {
 }
 
 function appendNumber(pressedButton) {
+	if (inputArea.textContent.length > 17) return;
 	if (inputArea.textContent === "0") inputArea.textContent = "";
 	inputArea.textContent += pressedButton;
 }
