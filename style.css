@@ -86,6 +86,10 @@ button:hover {
 	filter: brightness(90%);
 }
 
+.grid button:hover {
+	font-size: 4vh;
+}
+
 button {
 	cursor: pointer;
 }
