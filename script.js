@@ -4,14 +4,8 @@ let op = "";
 let validKeys = ["+", "-", "/", "*", "=", ".", "Backspace", "Delete", "Enter"];
 document.addEventListener("keyup", (e) => {
 	let key = e.key;
-	console.log(key);
 	if (validKeys.includes(key) || !isNaN(key)) {
-		key = key
-			.replace("Enter", "=")
-			.replace("Backspace", "DELETE")
-			.replace("Delete", "CLEAR")
-			.replace("*", "x")
-			.replace("/", "÷");
+		key = bindToSiteKeyCode(key);
 		makeAction(key);
 	}
 });
@@ -53,34 +47,12 @@ function deleteLastDigit() {
 }
 
 function receiveOperation(pressedButton) {
-	if (pressedButton === "=") {
-		if (memoryArea.textContent.includes("=") || op === "") return;
+	if (pressedButton === "=") calculateResult();
+	else if (memoryArea.textContent === "" || memoryArea.textContent.includes("=")) appendToFirstNum(pressedButton);
+	else if (inputArea.textContent !== "") {
 		n2 = Number(inputArea.textContent);
 		let result = makeOperation();
-		if (result === undefined) clear();
-		else {
-			memoryArea.textContent = n1 + " " + op + " " + n2 + " =";
-			inputArea.textContent = result;
-			n1 = result;
-			n2 = NaN;
-			op = "";
-		}
-	} else if (memoryArea.textContent === "" || memoryArea.textContent.includes("=")) {
-		n1 = Number(inputArea.textContent);
-		op = pressedButton;
-		memoryArea.textContent = n1 + " " + op;
-		inputArea.textContent = "";
-	} else if (inputArea.textContent !== "") {
-		n2 = Number(inputArea.textContent);
-		let result = makeOperation();
-		if (result === undefined) clear();
-		else {
-			memoryArea.textContent = result + " " + pressedButton;
-			inputArea.textContent = "";
-			n1 = result;
-			n2 = NaN;
-			op = pressedButton;
-		}
+		appendOpToResult(result,pressedButton);
 	} else {
 		op = pressedButton;
 		memoryArea.textContent = n1 + " " + op;
@@ -124,4 +96,46 @@ function divide() {
 	console.log(n1 / n2);
 	if (n2 === 0) alert("You cannot divide by 0 !");
 	else return n1 / n2;
+}
+
+function calculateResult() {
+	if (memoryArea.textContent.includes("=") || op === "") return;
+	n2 = Number(inputArea.textContent);
+	let result = makeOperation();
+	if (result === undefined) clear();
+	else {
+		memoryArea.textContent = n1 + " " + op + " " + n2 + " =";
+		inputArea.textContent = result;
+		n1 = result;
+		n2 = NaN;
+		op = "";
+	}
+}
+
+function appendToFirstNum(pressedButton) {
+	n1 = Number(inputArea.textContent);
+	op = pressedButton;
+	memoryArea.textContent = n1 + " " + op;
+	inputArea.textContent = "";
+}
+
+function appendOpToResult(result,pressedButton) {
+	if (result === undefined) clear();
+	else {
+		memoryArea.textContent = result + " " + pressedButton;
+		inputArea.textContent = "";
+		n1 = result;
+		n2 = NaN;
+		op = pressedButton;
+	}
+}
+
+function bindToSiteKeyCode(key) {
+	key = key
+		.replace("Enter", "=")
+		.replace("Backspace", "DELETE")
+		.replace("Delete", "CLEAR")
+		.replace("*", "x")
+		.replace("/", "÷");
+	return key;
 }
