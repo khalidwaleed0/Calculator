@@ -24,7 +24,7 @@ function makeAction(e) {
 }
 
 function appendNumber(pressedButton) {
-	if (inputArea.textContent.length > 17) return;
+	if (inputArea.textContent.length > 10) return;
 	if (inputArea.textContent === "0") inputArea.textContent = "";
 	inputArea.textContent += pressedButton;
 }
@@ -52,7 +52,7 @@ function receiveOperation(pressedButton) {
 	else if (inputArea.textContent !== "") {
 		n2 = Number(inputArea.textContent);
 		let result = makeOperation();
-		appendOpToResult(result,pressedButton);
+		appendOpToResult(result, pressedButton);
 	} else {
 		op = pressedButton;
 		memoryArea.textContent = n1 + " " + op;
@@ -119,7 +119,7 @@ function appendToFirstNum(pressedButton) {
 	inputArea.textContent = "";
 }
 
-function appendOpToResult(result,pressedButton) {
+function appendOpToResult(result, pressedButton) {
 	if (result === undefined) clear();
 	else {
 		memoryArea.textContent = result + " " + pressedButton;
