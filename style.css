@@ -27,9 +27,20 @@ body {
 	display: flex;
 	flex-direction: column;
 	aspect-ratio: 9 / 16;
-	height: 85%;
 	padding: 16px;
 	background-color: #aaaaaa;
+}
+
+@media (orientation: portrait) {
+	.calculator {
+		width: 85%;
+	}
+}
+
+@media (orientation: landscape) {
+	.calculator {
+		height: 85%;
+	}
 }
 
 .screen {
