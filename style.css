@@ -27,7 +27,7 @@ body {
 	display: flex;
 	flex-direction: column;
 	aspect-ratio: 9 / 16;
-	height: 90%;
+	height: 85%;
 	padding: 16px;
 	background-color: #aaaaaa;
 }
