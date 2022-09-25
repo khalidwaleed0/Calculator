@@ -111,3 +111,8 @@ button:hover {
 button {
 	cursor: pointer;
 }
+
+.input-area {
+	overflow-x: auto;
+	/* word-break: break-all; can be used to add new line instead of scrolling */
+}
