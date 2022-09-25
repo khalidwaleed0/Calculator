@@ -26,6 +26,7 @@ function makeAction(e) {
 function appendNumber(pressedButton) {
 	if (inputArea.textContent === "0") inputArea.textContent = "";
 	inputArea.textContent += pressedButton;
+	inputArea.scrollLeft = inputArea.scrollWidth;
 }
 
 function appendDot() {
@@ -105,6 +106,7 @@ function calculateResult() {
 	else {
 		memoryArea.textContent = n1 + " " + op + " " + n2 + " =";
 		inputArea.textContent = result;
+		inputArea.scrollLeft = 0;
 		n1 = result;
 		n2 = NaN;
 		op = "";
