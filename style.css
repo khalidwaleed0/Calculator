@@ -52,11 +52,11 @@ body {
 	min-height: 20%;
 	background-color: #eeeeee;
 	padding-left: 16px;
+	overflow-x: auto;
 }
 
 .input-area {
 	font-size: 5vh;
-	overflow-x: auto;
 	/* word-break: break-all; can be used to add new line instead of scrolling */
 }
 
